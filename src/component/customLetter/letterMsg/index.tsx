@@ -17,6 +17,7 @@ export function LetterMsg({ messages }: LetterMsgProps) {
     () => messages.filter((message) => message.trim().length > 0),
     [messages]
   )
+  const renderedMessages = useMemo(() => ["💌", ...normalizedMessages], [normalizedMessages])
 
   useEffect(() => {
     if (!containerRef.current || normalizedMessages.length === 0) {
@@ -61,6 +62,7 @@ export function LetterMsg({ messages }: LetterMsgProps) {
 
       gsap.defaults({ overwrite: "auto", duration: 0.3 })
       gsap.set(sections, { scale: 0.8, autoAlpha: 0 })
+      setSection(sections[0])
 
       sections.forEach((section, index) => {
         ScrollTrigger.create({
@@ -98,12 +100,14 @@ export function LetterMsg({ messages }: LetterMsgProps) {
 
   return (
     <div ref={containerRef} className="letter-msg">
-      {normalizedMessages.map((message, index) => (
+      {renderedMessages.map((message, index) => (
         <section
           key={`message-${index}`}
           className={`letter-msg__panel ${index === 0 ? "first" : ""} ${PANEL_COLORS[index % PANEL_COLORS.length]}`}
         >
-          <h2 className="letter-msg__text">{message}</h2>
+          <h2 className="letter-msg__text">
+            {message}
+          </h2>
         </section>
       ))}
       <div

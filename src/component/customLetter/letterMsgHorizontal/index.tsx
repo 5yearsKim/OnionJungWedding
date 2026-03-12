@@ -31,7 +31,7 @@ export function LetterMsgHorizontal({ message }: LetterMsgHorizontalProps) {
         scrollTrigger: {
           trigger: wrapper,
           pin: true,
-          end: "+=2000px",
+          end: () =>`+=${(textRef.current?.scrollWidth ?? 0) }`, 
           scrub: true,
         },
       })
@@ -44,8 +44,8 @@ export function LetterMsgHorizontal({ message }: LetterMsgHorizontalProps) {
           scrollTrigger: {
             trigger: char,
             containerAnimation: scrollTween,
-            start: "left 100%",
-            end: "left 30%",
+            start: "left 80%",
+            end: "left 20%",
             scrub: 1,
           },
         })
