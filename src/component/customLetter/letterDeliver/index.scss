@@ -1,0 +1,61 @@
+.letter-deliver {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  overflow: visible;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 214, 0) 0%,
+    rgba(255, 247, 204, 0.78) 24%,
+    rgba(255, 244, 184, 0.96) 50%,
+    rgba(255, 247, 204, 0.78) 76%,
+    rgba(255, 248, 214, 0) 100%
+  );
+  height: 220vh;
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+}
+
+.letter-deliver__scene {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8vh;
+  z-index: 20;
+  width: 100%;
+  height: 100vh;
+}
+
+.letter-deliver__photo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(30vw, 220px);
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+
+.letter-deliver__photo--first {
+  z-index: 2;
+}
+
+.letter-deliver__photo--second {
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .letter-deliver {
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+  }
+
+  .letter-deliver__scene {
+    top: 6vh;
+    height: 100vh;
+  }
+
+  .letter-deliver__photo {
+    width: min(45vw, 300px);
+  }
+}

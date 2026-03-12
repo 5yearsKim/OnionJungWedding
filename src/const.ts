@@ -1,4 +1,4 @@
-import dayjs from "dayjs"
+﻿import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import timezone from "dayjs/plugin/timezone"
 import "dayjs/locale/ko"
@@ -16,10 +16,9 @@ export const WEDDING_DATE_FORMAT = `YYYY년 MMMM D일 dddd A h시${WEDDING_DATE.
 // 예: 예식일 8월 -> 8월 15일 광복절
 export const HOLIDAYS = [15]
 
-export const LOCATION = "연세대학교 동문회관 ???홀"
-export const LOCATION_ADDRESS = "서울시 서대문구 ??? 1, 연세대 동문회관 ???층"
+export const LOCATION = "연세대학교 동문회관 그랜드홀"
+export const LOCATION_ADDRESS = "서울시 서대문구 연세로 50, 연세대 동문회관 3층"
 
-// 카카오톡 공유 시 위치 정보로 사용할 주소.
 // LOCATION 과 동일하게 설정해도 무방하나, 필요에 따라 좀 더 상세히 작성 가능.
 export const SHARE_ADDRESS = LOCATION
 export const SHARE_ADDRESS_TITLE = LOCATION

@@ -8,11 +8,10 @@
 @use "./component/information";
 @use "./component/guestbook";
 @use "./component/modal";
-@use "./component/shareButton";
 
 :root {
   --theme-color: #ff8585;
-  --theme-bg-color: #ffe7e7;
+  --theme-bg-color: #fff8f8;
   --alt-color: #c28080;
   --alt-bg-color: #f4f0f0;
   --dark-color: #282c34;
@@ -112,6 +111,9 @@ body {
   .card-view {
     width: 980px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     @media (max-width: 980px) {
       width: 500px;
@@ -196,6 +198,24 @@ body {
         animation-duration: inherit !important;
       }
     }
+
+    .letter-card {
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light-color);
+      border: 1px solid var(--light-grey-color);
+      border-radius: 0.5rem;
+      min-height: 240px;
+      margin-top: 1rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--dark-color);
+      box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
@@ -210,4 +230,104 @@ h2 {
 
 div.break {
   height: 1rem;
+}
+
+.customLetter {
+  --grid-line: rgba(255, 255, 255, 0.08);
+  --box-border: rgba(255, 255, 255, 0.25);
+  min-height: 100vh;
+  background-color: #0e1222;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+
+  .spacer {
+    width: 100%;
+    height: 20vh;
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #e8ecff;
+    opacity: 0.85;
+  }
+
+  .main {
+    position: relative;
+    height: 200vh;
+    width: 100%;
+  }
+
+  .container {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    place-items: center;
+    border: 2px dashed var(--box-border);
+    border-radius: 12px;
+  }
+
+  .initial {
+    left: 60%;
+    top: 10%;
+  }
+
+  .container.second {
+    left: 10%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+  }
+
+  .second .marker {
+    width: 100px;
+    height: 100px;
+  }
+
+  .third {
+    right: 10%;
+    bottom: 3rem;
+  }
+
+  .marker {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    outline: 1px dashed var(--grid-line);
+    outline-offset: -6px;
+    opacity: 0.6;
+  }
+
+  canvas.box {
+    width: 200px;
+    height: 200px;
+    border: 1px dashed #d2ceff;
+    border-radius: 10px;
+    background: transparent;
+    display: block;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    .initial {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .container.second {
+      left: 12%;
+      top: 52%;
+    }
+
+    .third {
+      right: 12%;
+      bottom: 2rem;
+    }
+  }
 }

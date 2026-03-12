@@ -22,7 +22,7 @@ try {
   const url = new URL(pkg.homepage)
   base = url.pathname
 } catch (e) {
-  base = pkg.homepage || "/"
+  base = "/"
 }
 
 // https://vite.dev/config/

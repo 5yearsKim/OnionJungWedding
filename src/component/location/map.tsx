@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from "react"
-import { useKakao, useNaver } from "@/component/store"
+import { useNaver } from "@/component/store"
 import {
-  KMAP_PLACE_ID,
   LOCATION,
   NMAP_PLACE_ID,
   WEDDING_HALL_POSITION,
 } from "@/const"
 import { NAVER_MAP_CLIENT_ID } from "@/env"
-import knaviIcon from "@/icons/knavi-icon.png"
 import LockIcon from "@/icons/lock-icon.svg?react"
 import nmapIcon from "@/icons/nmap-icon.png"
 import tmapIcon from "@/icons/tmap-icon.png"
@@ -19,7 +17,6 @@ export const Map = () => {
 
 const NaverMap = () => {
   const naver = useNaver()
-  const kakao = useKakao()
   const ref = useRef<HTMLDivElement>(null)
   const [locked, setLocked] = useState(true)
   const [showLockMessage, setShowLockMessage] = useState(false)
@@ -62,7 +59,7 @@ const NaverMap = () => {
               if (lockMessageTimeout.current !== null) {
                 clearTimeout(lockMessageTimeout.current)
               }
-              lockMessageTimeout.current = setTimeout(
+              lockMessageTimeout.current = window.setTimeout(
                 () => setShowLockMessage(false),
                 3000,
               )
@@ -72,7 +69,7 @@ const NaverMap = () => {
               if (lockMessageTimeout.current !== null) {
                 clearTimeout(lockMessageTimeout.current)
               }
-              lockMessageTimeout.current = setTimeout(
+              lockMessageTimeout.current = window.setTimeout(
                 () => setShowLockMessage(false),
                 3000,
               )
@@ -80,9 +77,9 @@ const NaverMap = () => {
           >
             {showLockMessage && (
               <div className="lock-message">
-                <LockIcon /> 자물쇠 버튼을 눌러
+                <LockIcon /> 터치를 잠금 해제
                 <br />
-                터치 잠금 해제 후 확대 및 이동해 주세요.
+                더블 클릭 없이 지도를 자유롭게 이동해보세요.
               </div>
             )}
           </div>
@@ -119,32 +116,7 @@ const NaverMap = () => {
           }}
         >
           <img src={nmapIcon} alt="naver-map-icon" />
-          네이버 지도
-        </button>
-        <button
-          onClick={() => {
-            switch (checkDevice()) {
-              case "ios":
-              case "android":
-                if (kakao)
-                  kakao.Navi.start({
-                    name: LOCATION,
-                    x: WEDDING_HALL_POSITION[0],
-                    y: WEDDING_HALL_POSITION[1],
-                    coordType: "wgs84",
-                  })
-                break
-              default:
-                window.open(
-                  `https://map.kakao.com/link/map/${KMAP_PLACE_ID}`,
-                  "_blank",
-                )
-                break
-            }
-          }}
-        >
-          <img src={knaviIcon} alt="kakao-navi-icon" />
-          카카오 내비
+          네이버지도
         </button>
         <button
           onClick={() => {
@@ -160,7 +132,7 @@ const NaverMap = () => {
                 break
               }
               default: {
-                alert("모바일에서 확인하실 수 있습니다.")
+                alert("비 PC에서는 티맵 링크로 이동해 주세요.")
                 break
               }
             }

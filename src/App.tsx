@@ -1,53 +1,18 @@
-import { BGEffect } from "@/component/bgEffect"
-import { Calendar } from "@/component/calendar"
-import { Cover } from "@/component/cover"
-import { Gallery } from "@/component/gallery"
-import { GuestBook } from "@/component/guestbook"
-import { Information } from "@/component/information"
-import { Invitation } from "@/component/invitation"
-import { LazyDiv } from "@/component/lazyDiv"
-import { Location } from "@/component/location"
-import { ShareButton } from "@/component/shareButton"
-import { STATIC_ONLY } from "@/env"
+import { InvitationPage } from "@/pages/invitationPage"
+import { GenerateUrlPage } from "@/pages/generateUrlPage"
 import "@/App.scss"
 
+
+
 function App() {
-  return (
-    <div className="background">
-      <BGEffect />
-      <div className="card-view">
-        <LazyDiv className="card-group">
-          {/* 표지 */}
-          <Cover />
+  const path = window.location.pathname
 
-          {/* 모시는 글 */}
-          <Invitation />
-        </LazyDiv>
+  if (path === "/generateUrl") {
+    return <GenerateUrlPage />
+  }
 
-        <LazyDiv className="card-group">
-          {/* 결혼식 날짜 (달력) */}
-          <Calendar />
-
-          {/* 겔러리 */}
-          <Gallery />
-        </LazyDiv>
-
-        <LazyDiv className="card-group">
-          {/* 오시는길 */}
-          <Location />
-        </LazyDiv>
-
-        <LazyDiv className="card-group">
-          {/* 마음 전하기 */}
-          <Information />
-          {/* 방명록 */}
-          {!STATIC_ONLY && <GuestBook />}
-        </LazyDiv>
-
-        <ShareButton />
-      </div>
-    </div>
-  )
+  return <InvitationPage />
 }
+
 
 export default App
