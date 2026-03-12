@@ -34,7 +34,7 @@ export function InvitationPage() {
 
         <LazyDiv className="card-group">
           <Information />
-          {!STATIC_ONLY && <GuestBook />}
+          {/* {!STATIC_ONLY && <GuestBook />} */}
         </LazyDiv>
 
       </div>
