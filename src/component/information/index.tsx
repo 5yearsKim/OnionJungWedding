@@ -1,9 +1,9 @@
-import { BRIDE_INFO, GROOM_INFO } from "../../const"
-import { STATIC_ONLY } from "../../env"
-import { Button } from "../button"
-import { LazyDiv } from "../lazyDiv"
-import { useModal } from "../modal"
-import { AttendanceInfo } from "./attendance"
+import { AttendanceInfo } from "@/component/information/attendance"
+import { Button } from "@/component/button"
+import { LazyDiv } from "@/component/lazyDiv"
+import { useModal } from "@/component/modal"
+import { BRIDE_INFO, GROOM_INFO } from "@/const"
+import { STATIC_ONLY } from "@/env"
 
 export const Information1 = () => {
   return (

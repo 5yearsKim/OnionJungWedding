@@ -1,8 +1,8 @@
-import { Map } from "./map"
-import CarIcon from "../../icons/car-icon.svg?react"
-import BusIcon from "../../icons/bus-icon.svg?react"
-import { LazyDiv } from "../lazyDiv"
-import { LOCATION, LOCATION_ADDRESS } from "../../const"
+import { LazyDiv } from "@/component/lazyDiv"
+import { LOCATION, LOCATION_ADDRESS } from "@/const"
+import BusIcon from "@/icons/bus-icon.svg?react"
+import CarIcon from "@/icons/car-icon.svg?react"
+import { Map } from "@/component/location/map"
 
 export const Location = () => {
   return (

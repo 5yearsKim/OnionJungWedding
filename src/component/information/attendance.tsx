@@ -5,14 +5,14 @@ import {
   LOCATION,
   WEDDING_DATE,
   WEDDING_DATE_FORMAT,
-} from "../../const"
-import { Button } from "../button"
-import { useModal } from "../modal"
+} from "@/const"
 import { useEffect, useRef, useState } from "react"
-import HeartIcon from "../../icons/heart-icon.svg?react"
-import CalendarIcon from "../../icons/calendar-icon.svg?react"
-import MarkerIcon from "../../icons/marker-icon.svg?react"
-import { SERVER_URL } from "../../env"
+import { Button } from "@/component/button"
+import { useModal } from "@/component/modal"
+import { SERVER_URL } from "@/env"
+import CalendarIcon from "@/icons/calendar-icon.svg?react"
+import HeartIcon from "@/icons/heart-icon.svg?react"
+import MarkerIcon from "@/icons/marker-icon.svg?react"
 
 const RULES = {
   name: {

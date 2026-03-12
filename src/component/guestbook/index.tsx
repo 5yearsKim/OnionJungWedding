@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Button } from "../button"
-import { dayjs } from "../../const"
-import { LazyDiv } from "../lazyDiv"
-import { useModal } from "../modal"
-import offlineGuestBook from "./offlineGuestBook.json"
-import { SERVER_URL } from "../../env"
+import { Button } from "@/component/button"
+import { LazyDiv } from "@/component/lazyDiv"
+import { useModal } from "@/component/modal"
+import { dayjs } from "@/const"
+import { SERVER_URL } from "@/env"
+import offlineGuestBook from "@/component/guestbook/offlineGuestBook.json"
 
 const RULES = {
   name: {

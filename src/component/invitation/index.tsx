@@ -10,12 +10,12 @@ import {
   GROOM_MOTHER,
   GROOM_TITLE,
   BRIDE_TITLE,
-} from "../../const"
-import { useModal } from "../modal"
-import { Button } from "../button"
-import { LazyDiv } from "../lazyDiv"
-import PhoneIcon from "../../icons/phone-flip-icon.svg?react"
-import EnvelopeIcon from "../../icons/envelope-icon.svg?react"
+} from "@/const"
+import { Button } from "@/component/button"
+import { LazyDiv } from "@/component/lazyDiv"
+import { useModal } from "@/component/modal"
+import EnvelopeIcon from "@/icons/envelope-icon.svg?react"
+import PhoneIcon from "@/icons/phone-flip-icon.svg?react"
 
 export const Invitation = () => {
   const { openModal, closeModal } = useModal()

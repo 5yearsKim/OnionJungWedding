@@ -1,17 +1,17 @@
 import { useEffect, useState, useRef } from "react"
-import { useKakao, useNaver } from "../store"
-import nmapIcon from "../../icons/nmap-icon.png"
-import knaviIcon from "../../icons/knavi-icon.png"
-import tmapIcon from "../../icons/tmap-icon.png"
-import LockIcon from "../../icons/lock-icon.svg?react"
-import UnlockIcon from "../../icons/unlock-icon.svg?react"
+import { useKakao, useNaver } from "@/component/store"
 import {
   KMAP_PLACE_ID,
   LOCATION,
   NMAP_PLACE_ID,
   WEDDING_HALL_POSITION,
-} from "../../const"
-import { NAVER_MAP_CLIENT_ID } from "../../env"
+} from "@/const"
+import { NAVER_MAP_CLIENT_ID } from "@/env"
+import knaviIcon from "@/icons/knavi-icon.png"
+import LockIcon from "@/icons/lock-icon.svg?react"
+import nmapIcon from "@/icons/nmap-icon.png"
+import tmapIcon from "@/icons/tmap-icon.png"
+import UnlockIcon from "@/icons/unlock-icon.svg?react"
 
 export const Map = () => {
   return NAVER_MAP_CLIENT_ID ? <NaverMap /> : <div>Map is not available</div>

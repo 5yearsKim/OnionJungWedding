@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from "react"
-import { type ModalInfo, ModalContext } from "./context"
+import { type ModalInfo, ModalContext } from "@/component/modal/context"
 
 type ModalInfoWithKey = ModalInfo & { key: number }
 

@@ -2,6 +2,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import svgr from "vite-plugin-svgr"
 import fs from "fs"
+import path from "path"
 
 import pkg from "./package.json"
 import { createHtmlPlugin } from "vite-plugin-html"
@@ -26,6 +27,11 @@ try {
 
 // https://vite.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   plugins: [
     react(),
     svgr(),

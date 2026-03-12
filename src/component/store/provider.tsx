@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { PropsWithChildren, useState } from "react"
-import { StoreContext } from "./context"
+import { StoreContext } from "@/component/store/context"
 
 export const StoreProvider = ({ children }: PropsWithChildren) => {
   const [naver, setNaver] = useState<any>(null)

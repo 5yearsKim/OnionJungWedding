@@ -4,9 +4,9 @@ import {
   LOCATION,
   WEDDING_DATE,
   WEDDING_DATE_FORMAT,
-} from "../../const"
-import { COVER_IMAGE } from "../../images"
-import { LazyDiv } from "../lazyDiv"
+} from "@/const"
+import { LazyDiv } from "@/component/lazyDiv"
+import { COVER_IMAGE } from "@/images"
 
 const DAY_OF_WEEK = [
   "Sunday",

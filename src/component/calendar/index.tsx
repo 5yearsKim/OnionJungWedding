@@ -5,8 +5,8 @@ import {
   HOLIDAYS,
   WEDDING_DATE,
   WEDDING_DATE_FORMAT,
-} from "../../const"
-import { LazyDiv } from "../lazyDiv"
+} from "@/const"
+import { LazyDiv } from "@/component/lazyDiv"
 
 const firstDayOfWeek = WEDDING_DATE.startOf("month").day()
 const daysInMonth = WEDDING_DATE.daysInMonth()

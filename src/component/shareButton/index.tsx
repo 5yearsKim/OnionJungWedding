@@ -6,10 +6,10 @@ import {
   SHARE_ADDRESS_TITLE,
   WEDDING_DATE,
   WEDDING_DATE_FORMAT,
-} from "../../const"
-import ktalkIcon from "../../icons/ktalk-icon.png"
-import { LazyDiv } from "../lazyDiv"
-import { useKakao } from "../store"
+} from "@/const"
+import { LazyDiv } from "@/component/lazyDiv"
+import { useKakao } from "@/component/store"
+import ktalkIcon from "@/icons/ktalk-icon.png"
 
 const baseUrl = import.meta.env.BASE_URL
 

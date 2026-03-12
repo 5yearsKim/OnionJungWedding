@@ -1,2 +1,2 @@
-export { ModalProvider } from "./provider"
-export { useModal } from "./hook"
+export { useModal } from "@/component/modal/hook"
+export { ModalProvider } from "@/component/modal/provider"

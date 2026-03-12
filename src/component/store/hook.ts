@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useContext, useEffect } from "react"
-import { StoreContext } from "./context"
-import { KAKAO_SDK_JS_KEY, NAVER_MAP_CLIENT_ID } from "../../env"
+import { StoreContext } from "@/component/store/context"
+import { KAKAO_SDK_JS_KEY, NAVER_MAP_CLIENT_ID } from "@/env"
 
 const baseUrl = import.meta.env.BASE_URL
 
