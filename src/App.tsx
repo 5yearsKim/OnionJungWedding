@@ -5,7 +5,7 @@ import "@/App.scss"
 
 
 function App() {
-  const path = window.location.pathname
+  const path = window.location.pathname.replace(/\/+$/, "")
 
   if (path === "/generateUrl") {
     return <GenerateUrlPage />
