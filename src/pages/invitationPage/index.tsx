@@ -2,13 +2,11 @@ import { BGEffect } from "@/component/bgEffect"
 import { Calendar } from "@/component/calendar"
 import { Cover } from "@/component/cover"
 import { Gallery } from "@/component/gallery"
-import { GuestBook } from "@/component/guestbook"
 import { Information } from "@/component/information"
 import { Invitation } from "@/component/invitation"
 import { LazyDiv } from "@/component/lazyDiv"
 import { Location } from "@/component/location"
 import {CustomLetter} from "@/component/customLetter"
-import { STATIC_ONLY } from "@/env"
 
 export function InvitationPage() {
   return (
@@ -34,7 +32,6 @@ export function InvitationPage() {
 
         <LazyDiv className="card-group">
           <Information />
-          {/* {!STATIC_ONLY && <GuestBook />} */}
         </LazyDiv>
 
       </div>

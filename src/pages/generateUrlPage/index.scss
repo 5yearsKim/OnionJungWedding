@@ -2,14 +2,14 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background: linear-gradient(150deg, #fff8f8, #fff);
+  background: linear-gradient(150deg, var(--theme-bg-color), var(--light-color));
   padding: 1.5rem;
 }
 
 .generate-url-card {
   width: min(640px, 100%);
-  background: #ffffff;
-  border: 1px solid #efe6e6;
+  background: var(--white-color);
+  border: 1px solid var(--light-grey-color);
   border-radius: 14px;
   padding: 1.75rem;
   box-shadow: 0 10px 28px rgba(40, 40, 40, 0.08);
@@ -22,7 +22,7 @@
 
 .generate-url-card p {
   margin: 0 0 1.2rem;
-  color: #6e6262;
+  color: var(--dark-color);
   font-size: 0.9rem;
 }
 
@@ -38,27 +38,27 @@
 }
 
 .generate-url-form .field span {
-  color: #5b4f4f;
+  color: var(--theme-color);
   font-weight: 600;
 }
 
 .generate-url-form input,
 .generate-url-form textarea {
   width: 100%;
-  border: 1px solid #dccaca;
+  border: 1px solid var(--light-grey-color);
   border-radius: 10px;
   padding: 0.72rem 0.85rem;
   font-family: inherit;
   font-size: 0.95rem;
-  background: #fcfbfb;
+  background: var(--light-color);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .generate-url-form input:focus,
 .generate-url-form textarea:focus {
-  border-color: #ff8585;
-  box-shadow: 0 0 0 3px rgba(255, 133, 133, 0.18);
+  border-color: var(--theme-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-color) 20%, transparent);
 }
 
 .generate-url-form textarea {
@@ -69,8 +69,8 @@
   justify-self: start;
   border-radius: 10px;
   border: none;
-  background: #ff8585;
-  color: #fff;
+  background: var(--theme-color);
+  color: var(--white-color);
   font-weight: 600;
   padding: 0.72rem 1.1rem;
   margin-top: 0.3rem;
@@ -79,7 +79,7 @@
 }
 
 .generate-url-button:hover {
-  background: #f56f6f;
+  background: color-mix(in srgb, var(--theme-color) 80%, black 20%);
 }
 
 .generate-url-button:active {
@@ -87,7 +87,7 @@
 }
 
 .generate-url-button:disabled {
-  background: #f2cece;
+  background: color-mix(in srgb, var(--theme-color) 20%, var(--theme-bg-color));
   cursor: not-allowed;
 }
 
@@ -99,7 +99,7 @@
 
 .generated-url-area label {
   font-size: 0.9rem;
-  color: #5b4f4f;
+  color: var(--theme-color);
   font-weight: 600;
 }
 
@@ -112,9 +112,9 @@
 
 .generated-url-row textarea {
   width: 100%;
-  border: 1px solid #d7c7c7;
+  border: 1px solid var(--light-grey-color);
   border-radius: 10px;
-  background: #f7f4f4;
+  background: var(--theme-bg-color);
   padding: 0.65rem 0.75rem;
   font-size: 0.85rem;
   font-family: inherit;
@@ -129,9 +129,9 @@
   align-items: center;
   gap: 0.45rem;
   border-radius: 10px;
-  border: 1px solid #ffc0c0;
-  background: #fff2f2;
-  color: #7a5a5a;
+  border: 1px solid var(--theme-color);
+  background: color-mix(in srgb, var(--theme-bg-color) 80%, var(--theme-color));
+  color: var(--theme-color);
   padding: 0 0.85rem;
   font-size: 0.85rem;
   white-space: nowrap;
@@ -140,8 +140,8 @@
 }
 
 .copy-url-button:hover {
-  border-color: #ff8585;
-  color: #5d4949;
+  border-color: var(--theme-color);
+  color: color-mix(in srgb, var(--theme-color) 80%, black 20%);
 }
 
 .copy-url-button svg {

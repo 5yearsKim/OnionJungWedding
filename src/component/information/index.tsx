@@ -1,9 +1,7 @@
-import { AttendanceInfo } from "@/component/information/attendance"
 import { Button } from "@/component/button"
 import { LazyDiv } from "@/component/lazyDiv"
 import { useModal } from "@/component/modal"
 import { BRIDE_INFO, GROOM_INFO } from "@/const"
-import { STATIC_ONLY } from "@/env"
 
 export const Information1 = () => {
   return (
@@ -149,24 +147,14 @@ export const Information2 = () => {
 }
 
 export const Information = () => {
-  if (STATIC_ONLY) {
-    return (
-      <>
-        <LazyDiv className="card information">
-          <Information1 />
-        </LazyDiv>
-        <LazyDiv className="card information">
-          <Information2 />
-        </LazyDiv>
-      </>
-    )
-  }
-
   return (
-    <LazyDiv className="card information">
-      <Information1 />
-      <Information2 />
-      <AttendanceInfo />
-    </LazyDiv>
+    <>
+      <LazyDiv className="card information">
+        <Information1 />
+      </LazyDiv>
+      <LazyDiv className="card information">
+        <Information2 />
+      </LazyDiv>
+    </>
   )
 }

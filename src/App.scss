@@ -6,14 +6,17 @@
 @use "./component/gallery";
 @use "./component/location";
 @use "./component/information";
-@use "./component/guestbook";
 @use "./component/modal";
 
 :root {
-  --theme-color: #ff8585;
-  --theme-bg-color: #fff8f8;
-  --alt-color: #c28080;
-  --alt-bg-color: #f4f0f0;
+  // --theme-color: #ff8585;
+  // --theme-bg-color: #fff8f8;
+  // --alt-color: #c28080;
+  // --alt-bg-color: #f4f0f0;
+  --theme-color: #29a329;
+  --theme-bg-color: #f2fff2;
+  --alt-color: #558000;
+  --alt-bg-color: #f7ffe6;
   --dark-color: #282c34;
   --dark-grey-color: #d2d2d2;
   --light-grey-color: #eaeaea;
@@ -125,12 +128,13 @@ body {
 
     .card-group {
       position: relative;
+      width: 100%;
+
       @media (width > 980px) {
         display: flex;
         flex-direction: row;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         margin: 10px;
-        background-color: var(--light-color);
 
         opacity: 0;
         &.lazy-active {
@@ -147,7 +151,8 @@ body {
       }
 
       .card {
-        background-color: var(--light-color);
+        // background-color: var(--light-color);
+        background-color: rgba(255, 255, 255, 0.7);
         padding: 1rem;
         border: 1px solid var(--light-grey-color);
         width: 50%;
