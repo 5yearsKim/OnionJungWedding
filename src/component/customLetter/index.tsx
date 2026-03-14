@@ -1,3 +1,5 @@
+import "./index.scss"
+
 import { LetterDeliver } from "@/component/customLetter/letterDeliver"
 import { LetterMsg } from "@/component/customLetter/letterMsg"
 import { LetterMsgHorizontal } from "@/component/customLetter/letterMsgHorizontal"
@@ -21,7 +23,7 @@ export function CustomLetter() {
   }
 
   return (
-    <div>
+    <div className="custom-letter">
       <LetterMsgHorizontal message={title} />
 
       <LetterMsg messages={parseMessages(messageText)} />
@@ -30,3 +32,4 @@ export function CustomLetter() {
     </div>
   )
 }
+

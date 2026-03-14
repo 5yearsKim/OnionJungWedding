@@ -24,6 +24,8 @@ export function LetterMsgHorizontal({ message }: LetterMsgHorizontalProps) {
 
     const ctx = gsap.context(() => {
       const split = SplitText.create(text, { type: "chars, words" })
+      const textWidth = textRef.current?.scrollWidth ?? 0
+      const endOffset = textWidth * 1.0
 
       const scrollTween = gsap.to(text, {
         xPercent: -100,
@@ -31,7 +33,7 @@ export function LetterMsgHorizontal({ message }: LetterMsgHorizontalProps) {
         scrollTrigger: {
           trigger: wrapper,
           pin: true,
-          end: () =>`+=${(textRef.current?.scrollWidth ?? 0) }`, 
+          end: () => `+=${endOffset}`,
           scrub: true,
         },
       })
@@ -65,3 +67,4 @@ export function LetterMsgHorizontal({ message }: LetterMsgHorizontalProps) {
     </section>
   )
 }
+

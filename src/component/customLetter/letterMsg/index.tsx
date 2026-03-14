@@ -24,8 +24,12 @@ export function LetterMsg({ messages }: LetterMsgProps) {
       return
     }
 
-    const messageStartOffset =
-      window.scrollY + containerRef.current.getBoundingClientRect().top
+    const getMessageStartOffset = () => {
+      if (!containerRef.current) {
+        return 0
+      }
+      return window.scrollY + containerRef.current.getBoundingClientRect().top
+    }
 
     const handleResize = () => {
       ScrollTrigger.refresh()
@@ -66,8 +70,8 @@ export function LetterMsg({ messages }: LetterMsgProps) {
 
       sections.forEach((section, index) => {
         ScrollTrigger.create({
-          start: () => messageStartOffset + index * window.innerHeight,
-          end: () => messageStartOffset + (index + 1) * window.innerHeight,
+          start: () => getMessageStartOffset() + index * window.innerHeight,
+          end: () => getMessageStartOffset() + (index + 1) * window.innerHeight,
           onEnter: () => setSection(section),
           onEnterBack: () => setSection(section),
           onLeave: () => {

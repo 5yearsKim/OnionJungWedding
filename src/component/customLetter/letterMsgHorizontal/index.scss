@@ -5,13 +5,14 @@
   align-items: center;
   width: 100%;
   max-width: 100%;
+  min-width: 60vw;
 }
 
 .Horizontal__text {
   display: flex;
   white-space: nowrap;
   gap: 4vw;
-  padding-left: 100%;
+  padding-left: 40%;
 }
 
 .heading-xl {

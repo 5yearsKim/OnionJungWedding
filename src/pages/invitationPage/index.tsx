@@ -1,3 +1,5 @@
+import "./index.scss"
+
 import { BGEffect } from "@/component/bgEffect"
 import { Calendar } from "@/component/calendar"
 import { Cover } from "@/component/cover"
@@ -12,10 +14,10 @@ export function InvitationPage() {
   return (
     <div className="background">
       <BGEffect />
+
+      <CustomLetter/>
+
       <div className="card-view">
-
-        <CustomLetter/>
-
         <LazyDiv className="card-group">
           <Cover />
           <Invitation />
