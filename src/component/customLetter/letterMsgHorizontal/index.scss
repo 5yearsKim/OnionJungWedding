@@ -3,18 +3,19 @@
   height: 100vh;
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .Horizontal__text {
   display: flex;
-  width: max-content;
   white-space: nowrap;
   gap: 4vw;
-  padding-left: 110vw;
+  padding-left: 100%;
 }
 
 .heading-xl {
-  font-size: clamp(2rem, 10vw, 12rem);
+  font-size: clamp(2rem, 8vw, 6rem);
   font-weight: 600;
   line-height: 1.1;
   margin: 0;
