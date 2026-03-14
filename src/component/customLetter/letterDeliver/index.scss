@@ -30,17 +30,19 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   width: min(30vw, 220px);
   aspect-ratio: 3 / 4;
   object-fit: contain;
 }
 
 .letter-deliver__photo--first {
+  transform: translate(-50%, -50%);
   z-index: 2;
 }
 
 .letter-deliver__photo--second {
+  transform: translateX(-50%);
   z-index: 999;
 }
 

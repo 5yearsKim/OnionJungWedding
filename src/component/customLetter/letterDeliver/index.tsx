@@ -27,7 +27,27 @@ export function LetterDeliver() {
       return
     }
 
+    const getSecondImageFinalTop = () => {
+      const sceneHeight = scene.clientHeight
+      const imageHeight = secondImage.offsetHeight
+      return Math.max(sceneHeight - imageHeight, 0)
+    }
+
+    const firstImageStartRatio = 0.1
+    const firstImageEndRatio = 0.4
+    const getFirstImageStartTop = () => scene.clientHeight * firstImageStartRatio
+    const getFirstImageEndTop = () => scene.clientHeight * firstImageEndRatio
+    const getGapByImageHeight = () => firstImage.offsetHeight * 0
+    const getSecondImageStartTop = () => getFirstImageEndTop() + getGapByImageHeight()
+
     const ctx = gsap.context(() => {
+      const firstStart = getFirstImageStartTop()
+      const firstEnd = getFirstImageEndTop()
+      const secondStart = getSecondImageStartTop()
+
+      gsap.set(firstImage, { top: firstStart,  })
+      gsap.set(secondImage, { top: secondStart, rotate: -6 })
+
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -38,24 +58,16 @@ export function LetterDeliver() {
         },
       })
 
-      timeline.fromTo(
+      timeline.to(
         firstImage,
-        { top: "10%" },
-        { top: "50%", duration: 0.55, ease: "none" },
-        0
-      )
-
-      timeline.fromTo(
-        secondImage,
-        { top: "70%", rotate: -4 },
-        { top: "70%", rotate: 0, duration: 0.55, ease: "none" },
+        { top: firstEnd, duration: 0.5, rotate: 0, ease: "none" },
         0
       )
 
       timeline.to(
         secondImage,
-        { top: "88%", duration: 0.45, ease: "none" },
-        0.55
+        { top: getSecondImageFinalTop, rotate: 0, duration: 0.5, ease: "none" },
+        0.5
       )
 
       return () => {
