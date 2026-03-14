@@ -44,10 +44,12 @@
 
 .letter-deliver__photo--first {
   z-index: 2;
+  aspect-ratio: 1 / 1;
 }
 
 .letter-deliver__photo--second {
   z-index: 999;
+  aspect-ratio:  512 / 332 ;
 }
 
 @media (max-width: 768px) {

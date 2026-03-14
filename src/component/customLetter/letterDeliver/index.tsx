@@ -1,15 +1,14 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import heartImage from "../../../icons/heart.png"
+import loveLetterImage from "../../../icons/love_letter.png"
 import "./index.scss"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const baseUrl = import.meta.env.BASE_URL.endsWith("/")
-  ? import.meta.env.BASE_URL
-  : `${import.meta.env.BASE_URL}/`
-const firstImageUrl = `${baseUrl}images/heart.png`
-const secondImageUrl = `${baseUrl}images/love_letter.png`
+const firstImageUrl = heartImage
+const secondImageUrl = loveLetterImage
 
 export function LetterDeliver() {
   const sectionRef = useRef<HTMLElement | null>(null)
