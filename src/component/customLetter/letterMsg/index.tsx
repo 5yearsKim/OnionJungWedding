@@ -17,7 +17,7 @@ export function LetterMsg({ messages }: LetterMsgProps) {
     () => messages.filter((message) => message.trim().length > 0),
     [messages]
   )
-  const renderedMessages = useMemo(() => ["💌", ...normalizedMessages], [normalizedMessages])
+  const renderedMessages = useMemo(() => ["💍", ...normalizedMessages], [normalizedMessages])
 
   useEffect(() => {
     if (!containerRef.current || normalizedMessages.length === 0) {
@@ -66,14 +66,22 @@ export function LetterMsg({ messages }: LetterMsgProps) {
 
       gsap.defaults({ overwrite: "auto", duration: 0.3 })
       gsap.set(sections, { scale: 0.8, autoAlpha: 0 })
-      setSection(sections[0])
+      hideSection(sections[0])
 
       sections.forEach((section, index) => {
+        const getSectionStart = () => getMessageStartOffset() + index * window.innerHeight
+        const getSectionEnd = () => getMessageStartOffset() + (index + 1) * window.innerHeight
+
         ScrollTrigger.create({
-          start: () => getMessageStartOffset() + index * window.innerHeight,
-          end: () => getMessageStartOffset() + (index + 1) * window.innerHeight,
-          onEnter: () => setSection(section),
-          onEnterBack: () => setSection(section),
+          id: `letter-msg-${index}`,
+          start: getSectionStart,
+          end: getSectionEnd,
+          onEnter: () => {
+            setSection(section)
+          },
+          onEnterBack: () => {
+            setSection(section)
+          },
           onLeave: () => {
             if (currentSection === section) {
               hideSection(section)
@@ -107,7 +115,7 @@ export function LetterMsg({ messages }: LetterMsgProps) {
       {renderedMessages.map((message, index) => (
         <section
           key={`message-${index}`}
-          className={`letter-msg__panel ${index === 0 ? "first" : ""} ${PANEL_COLORS[index % PANEL_COLORS.length]}`}
+          className={`letter-msg__panel ${PANEL_COLORS[index % PANEL_COLORS.length]}`}
         >
           <h2 className="letter-msg__text">
             {message}
@@ -115,7 +123,7 @@ export function LetterMsg({ messages }: LetterMsgProps) {
         </section>
       ))}
       <div
-        aria-hidden="true"
+        // aria-hidden="true"
         className="letter-msg__spacer"
         style={{ height: `${(normalizedMessages.length + 1) * 100}vh` }}
       />

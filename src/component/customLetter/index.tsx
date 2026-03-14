@@ -24,7 +24,9 @@ export function CustomLetter() {
 
   return (
     <div className="custom-letter">
-      <LetterMsgHorizontal message={title} />
+      <LetterMsgHorizontal
+        message={title}
+      />
 
       <LetterMsg messages={parseMessages(messageText)} />
 
@@ -32,4 +34,3 @@ export function CustomLetter() {
     </div>
   )
 }
-
