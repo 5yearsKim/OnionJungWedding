@@ -16,19 +16,22 @@ export function LetterDeliver() {
   const sceneRef = useRef<HTMLDivElement | null>(null)
   const firstImageRef = useRef<HTMLImageElement | null>(null)
   const secondImageRef = useRef<HTMLImageElement | null>(null)
+  const spacerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const section = sectionRef.current
     const scene = sceneRef.current
     const firstImage = firstImageRef.current
     const secondImage = secondImageRef.current
+    const spacer = spacerRef.current
 
-    if (!section || !scene || !firstImage || !secondImage) {
+    if (!section || !scene || !firstImage || !secondImage || !spacer) {
       return
     }
 
     const getSecondImageFinalTop = () => {
       const sceneHeight = scene.clientHeight
+      // const imageHeight = 0
       const imageHeight = secondImage.offsetHeight
       return Math.max(sceneHeight - imageHeight, 0)
     }
@@ -36,9 +39,16 @@ export function LetterDeliver() {
     // const firstImageStartTopValue = () => window.innerHeight * 0.1
     const firstImageStartTopValue = () => 0
     const getFirstImageStartTop = () => firstImageStartTopValue()
-    const getFirstImageEndTop = () => scene.clientHeight * 0.4
-    const getGapByImageHeight = () => firstImage.offsetHeight * 0.1
+    const getFirstImageEndTop = () => scene.clientHeight * 0.35
+    const getGapByImageHeight = () => firstImage.offsetHeight * 0.9
     const getSecondImageStartTop = () => getFirstImageEndTop() + getGapByImageHeight()
+    const getScrollDistance = () => Math.max(scene.clientHeight * 3, window.innerHeight)
+    const updateSpacer = () => {
+      spacer.style.height = `${getScrollDistance()}px`
+    }
+
+    updateSpacer()
+    window.addEventListener("resize", updateSpacer)
 
     const ctx = gsap.context(() => {
       gsap.set(firstImage, { y: getFirstImageStartTop })
@@ -48,16 +58,15 @@ export function LetterDeliver() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "bottom bottom",
+          end: () => `+=${getScrollDistance()}`,
           scrub: true,
-          pin: scene,
           invalidateOnRefresh: true,
         },
       })
 
       timeline.to(
         firstImage,
-        { y: getFirstImageEndTop, duration: 0.5, rotate: 0, ease: "none" },
+        { y: getFirstImageEndTop, duration: 0.5, rotate: 0, scale: 0.8, ease: "none" },
         0
       )
 
@@ -67,13 +76,12 @@ export function LetterDeliver() {
         0.5
       )
 
-      return () => {
-        timeline.scrollTrigger?.kill()
-        timeline.kill()
-      }
     }, sceneRef)
 
-    return () => ctx.revert()
+    return () => {
+      window.removeEventListener("resize", updateSpacer)
+      ctx.revert()
+    }
   }, [])
 
   return (
@@ -94,6 +102,7 @@ export function LetterDeliver() {
           aria-hidden="true"
         />
       </div>
+      <div className="letter-deliver__spacer" ref={spacerRef} aria-hidden="true" />
     </section>
   )
 }
