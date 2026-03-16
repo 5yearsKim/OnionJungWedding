@@ -8,7 +8,6 @@ import {
 import { NAVER_MAP_CLIENT_ID } from "@/env"
 import LockIcon from "@/icons/lock-icon.svg?react"
 import nmapIcon from "@/icons/nmap-icon.png"
-import tmapIcon from "@/icons/tmap-icon.png"
 import UnlockIcon from "@/icons/unlock-icon.svg?react"
 
 export const Map = () => {
@@ -117,29 +116,6 @@ const NaverMap = () => {
         >
           <img src={nmapIcon} alt="naver-map-icon" />
           네이버지도
-        </button>
-        <button
-          onClick={() => {
-            switch (checkDevice()) {
-              case "ios":
-              case "android": {
-                const params = new URLSearchParams({
-                  goalx: WEDDING_HALL_POSITION[0].toString(),
-                  goaly: WEDDING_HALL_POSITION[1].toString(),
-                  goalName: LOCATION,
-                })
-                window.open(`tmap://route?${params.toString()}`, "_self")
-                break
-              }
-              default: {
-                alert("비 PC에서는 티맵 링크로 이동해 주세요.")
-                break
-              }
-            }
-          }}
-        >
-          <img src={tmapIcon} alt="t-map-icon" />
-          티맵
         </button>
       </div>
     </>
