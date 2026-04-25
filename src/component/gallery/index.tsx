@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Button } from "@/component/button"
 import { LazyDiv } from "@/component/lazyDiv"
 import { useModal } from "@/component/modal"
-import { GALLERY_IMAGES } from "@/images"
+import { GALLERY_IMAGES } from "@/images/real"
 import ArrowLeft from "@/icons/angle-left-sm.svg?react"
 
 const CAROUSEL_ITEMS = GALLERY_IMAGES.map((item, idx) => (

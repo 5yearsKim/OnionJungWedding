@@ -6,7 +6,7 @@ import {
   WEDDING_DATE_FORMAT,
 } from "@/const"
 import { LazyDiv } from "@/component/lazyDiv"
-import { COVER_IMAGE } from "@/images"
+import { COVER_IMAGE } from "@/images/real"
 
 const DAY_OF_WEEK = [
   "Sunday",

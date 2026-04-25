@@ -93,7 +93,7 @@ export const Calendar = () => {
               className={classes.length ? classes.join(" ") : undefined}
             >
               <span>{date}</span>
-              {isWeddingDate && <div className="heart" />}
+              {isWeddingDate && <div className="highlighter" />}
             </div>
           )
         })}

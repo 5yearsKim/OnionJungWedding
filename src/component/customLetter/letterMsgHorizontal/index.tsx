@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useLayoutEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
@@ -16,7 +16,7 @@ export function LetterMsgHorizontal({
   const wrapperRef = useRef<HTMLElement | null>(null)
   const textRef = useRef<HTMLHeadingElement | null>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const wrapper = wrapperRef.current
     const text = textRef.current
 
@@ -26,17 +26,21 @@ export function LetterMsgHorizontal({
 
     const ctx = gsap.context(() => {
       const split = SplitText.create(text, { type: "chars, words" })
-      const textWidth = text.scrollWidth
       const windowWidth = wrapper.clientWidth
-      const startOffset = -(windowWidth * 0.3)
+      const textWidth = text.scrollWidth
+      const startOffset =
+        textWidth > windowWidth
+          ? windowWidth / 2
+          : (windowWidth - textWidth) / 2
       const extraMargin = windowWidth * 0.1
-      const endOffset = textWidth + extraMargin
+      const endX = -(textWidth + extraMargin)
+      const endOffset = startOffset - endX
 
       const scrollTween = gsap.fromTo(
         text,
         { x: startOffset },
         {
-          x: -(textWidth + extraMargin),
+          x: endX,
           ease: "none",
           scrollTrigger: {
             id: "horizontal-title",
@@ -52,8 +56,8 @@ export function LetterMsgHorizontal({
 
       split.chars.forEach((char) => {
         gsap.from(char, {
-          yPercent: "random(-200, 200)",
-          rotation: "random(-20, 20)",
+          yPercent: "random(-60, 60)",
+          rotation: "random(-12, 12)",
           ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: char,
@@ -71,7 +75,7 @@ export function LetterMsgHorizontal({
 
   return (
     <section className="Horizontal" ref={wrapperRef}>
-      <div className="container">
+      <div className="Horizontal__container">
         <h3 className="Horizontal__text heading-xl" ref={textRef}>
           {message}
         </h3>
