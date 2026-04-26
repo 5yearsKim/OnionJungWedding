@@ -45,7 +45,7 @@ export const Location = () => {
           <div className="heading">주차 안내</div>
           <div />
           <div className="content">
-            * 맞은편 전용 주차장(주차타워) 이용
+            * 맞은편 전용 주차타워 이용 (2시간 무료)
             <br />
             - 주소: 서초구 서초중앙로2길 10
           </div>
