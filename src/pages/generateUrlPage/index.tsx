@@ -1,23 +1,81 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./index.scss"
+import {
+  GeneratedUrlList,
+  type GeneratedUrlItem,
+} from "@/component/generatedUrlList"
 import { encodeBase64 } from "@/utils/url"
+
+const STORAGE_KEY = "onion-jung-wedding:generated-urls"
+
+function createInvitationUrl(title: string, messages: string) {
+  const params = new URLSearchParams()
+  params.set("t_", encodeBase64(title))
+  params.set("m_", encodeBase64(messages))
+
+  return `${window.location.origin}/?${params.toString()}`
+}
+
+function createId() {
+  if (window.crypto?.randomUUID) {
+    return window.crypto.randomUUID()
+  }
+
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`
+}
+
+function getSavedItems() {
+  try {
+    const savedItems = window.localStorage.getItem(STORAGE_KEY)
+    if (!savedItems) return []
+
+    const parsedItems = JSON.parse(savedItems)
+    if (!Array.isArray(parsedItems)) return []
+
+    return parsedItems.filter(
+      (item): item is GeneratedUrlItem =>
+        typeof item?.id === "string" &&
+        typeof item?.title === "string" &&
+        typeof item?.messages === "string" &&
+        typeof item?.url === "string" &&
+        typeof item?.updatedAt === "string",
+    )
+  } catch {
+    return []
+  }
+}
 
 export function GenerateUrlPage() {
   const [title, setTitle] = useState("")
   const [messages, setMessages] = useState("")
   const [generatedUrl, setGeneratedUrl] = useState("")
+  const [savedUrls, setSavedUrls] = useState<GeneratedUrlItem[]>(getSavedItems)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const isDisabled = !title.trim() || !messages.trim()
+
+  useEffect(() => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(savedUrls))
+  }, [savedUrls])
 
   const handleGenerate = () => {
     if (isDisabled) {
       return
     }
 
-    const params = new URLSearchParams()
-    params.set("t_", encodeBase64(title))
-    params.set("m_", encodeBase64(messages))
+    const nextUrl = createInvitationUrl(title.trim(), messages)
+    const nextItem: GeneratedUrlItem = {
+      id: selectedId ?? createId(),
+      title: title.trim(),
+      messages,
+      url: nextUrl,
+      updatedAt: new Date().toISOString(),
+    }
 
-    const nextUrl = `${window.location.origin}/?${params.toString()}`
+    setSavedUrls((currentItems) => [
+      nextItem,
+      ...currentItems.filter((item) => item.id !== nextItem.id),
+    ])
+    setSelectedId(nextItem.id)
     setGeneratedUrl(nextUrl)
   }
 
@@ -26,29 +84,51 @@ export function GenerateUrlPage() {
     await navigator.clipboard.writeText(generatedUrl)
   }
 
+  const handleSelectSavedUrl = (item: GeneratedUrlItem) => {
+    setSelectedId(item.id)
+    setTitle(item.title)
+    setMessages(item.messages)
+    setGeneratedUrl(item.url)
+  }
+
+  const handleCreateNew = () => {
+    setSelectedId(null)
+    setTitle("")
+    setMessages("")
+    setGeneratedUrl("")
+  }
+
+  const handleDelete = (id: string) => {
+    setSavedUrls((currentItems) => currentItems.filter((item) => item.id !== id))
+
+    if (selectedId === id) {
+      handleCreateNew()
+    }
+  }
+
   return (
     <main className="generate-url-page">
       <section className="generate-url-card">
-        <h1>Generate Invitation URL</h1>
-        <p>Enter a title and custom messages, then click generate when ready.</p>
+        <h1>초대장 URL 생성</h1>
+        <p>제목과 전하고 싶은 메시지를 입력한 뒤 URL을 생성하세요.</p>
 
         <form className="generate-url-form" onSubmit={(e) => e.preventDefault()}>
           <label className="field">
-            <span>Title</span>
+            <span>제목</span>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Example: Thank You for Joining"
+              placeholder="예: ㅁㅁ아, 우리에 특별한 결혼식에 초대할게"
             />
           </label>
 
           <label className="field">
-            <span>Messages</span>
+            <span>메시지</span>
             <textarea
               value={messages}
               onChange={(e) => setMessages(e.target.value)}
               rows={6}
-              placeholder="Write your message lines here"
+              placeholder="전하고 싶은 메시지를 입력해 주세요"
             />
           </label>
 
@@ -58,13 +138,22 @@ export function GenerateUrlPage() {
             onClick={handleGenerate}
             disabled={isDisabled}
           >
-            generateUrl
+            {selectedId ? "URL 수정하기" : "URL 생성하기"}
           </button>
+          {selectedId && (
+            <button
+              type="button"
+              className="reset-url-button"
+              onClick={handleCreateNew}
+            >
+              새 URL 작성
+            </button>
+          )}
         </form>
 
         {generatedUrl && (
           <div className="generated-url-area">
-            <label htmlFor="generated-url">Generated URL</label>
+            <label htmlFor="generated-url">생성된 URL</label>
             <div className="generated-url-row">
               <textarea
                 id="generated-url"
@@ -76,7 +165,7 @@ export function GenerateUrlPage() {
                 type="button"
                 className="copy-url-button"
                 onClick={handleCopy}
-                aria-label="Copy URL"
+                aria-label="URL 복사"
               >
                 <span aria-hidden="true">
                   <svg
@@ -102,12 +191,20 @@ export function GenerateUrlPage() {
                     />
                   </svg>
                 </span>
-                Copy
+                복사
               </button>
             </div>
           </div>
         )}
+
       </section>
+
+      <GeneratedUrlList
+        items={savedUrls}
+        selectedId={selectedId}
+        onSelect={handleSelectSavedUrl}
+        onDelete={handleDelete}
+      />
     </main>
   )
 }
